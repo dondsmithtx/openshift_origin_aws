@@ -3,13 +3,13 @@ Description: 'Openshift Cluster'
 Parameters:
   KeyName:
     Type: AWS::EC2::KeyPair::KeyName
-    Default: 'dsmith-aws'
-  AmiId: 
+    Default: "dsmith-aws"
+  AmiId:
     Type: String
-    Default: 'ami-0ad99772'
+    Default: "ami-0ad99772"
   InstanceType:
     Type: String
-    Default: 'm5.large'
+    Default: "m5.large"
 Resources:
   Master: 
     Type: 'AWS::EC2::Instance'
