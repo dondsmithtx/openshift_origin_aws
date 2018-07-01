@@ -1,0 +1,25 @@
+---
+
+- host: localhost
+  connection: local
+
+  311  yum install python-passlib --enablerepo=*
+  - name: install prereqs
+    yum:
+      name: "{{ item }}"
+
+    with_items:
+    - python-passlib
+    - python-click
+
+  - name: install rpms
+    yum:
+      src: "
+    vars:
+      download_url: http://cbs.centos.org/kojifiles/packages/openshift-ansible/3.9.0/0.21.0.el7/noarch/
+    with_items:
+    - openshift-ansible-playbooks-3.9.0-0.21.0.el7.noarch.rpm
+    - openshift-ansible-docs-3.9.0-0.21.0.el7.noarch.rpm
+    - openshift-ansible-roles-3.9.0-0.21.0.el7.noarch.rpm
+    - openshift-ansible-3.9.0-0.21.0.el7.noarch.rpm
+    - atomic-openshift-utils-3.9.0-0.21.0.el7.noarch.rpm

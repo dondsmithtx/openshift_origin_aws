@@ -1,0 +1,5 @@
+stack_name: "openshift-origin"
+region: "us-west-2"
+key_name: "dsmith-aws"
+instance_type: "t2.micro"
+ami_id: "ami-0ad99772"

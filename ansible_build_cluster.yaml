@@ -8,29 +8,18 @@
   vars:
   - instance_state: "present"
 
-
-
   tasks:
   - set_fact: state=present
     when: state is undefined
-  - name: create an openshift origin cloudformation stack
+  - name: create/delete cloudformation stack for openshift origin
     cloudformation:
-      stack_name: "openshift-origin"
+      stack_name: "{{ stack_name }}"
       state: "{{ state }}"
-      region: "us-west-2"
+      region: "{{ region }}"
       template: "cft/openshift_cluster.yaml"
       template_parameters:
-        KeyName: "dsmith-aws"
-        InstanceType: "t2.micro"
-        AmiId: "ami-0ad99772"
+        KeyName: "{{ key_name }}"
+        InstanceType: "{{ instance_type }}"
+        AmiId: "{{ ami_id }}"
       tags:
         Stack: cft
-  
-  # Store a variable in vault
-  # mysecret: !vault |
-  #           $ANSIBLE_VAULT;1.1;AES256
-  #           66386439653236336462626566653063336164663966303231363934653561363964363833313662
-  #           6431626536303530376336343832656537303632313433360a626438346336353331386135323734
-  #           62656361653630373231613662633962316233633936396165386439616533353965373339616234
-  #           3430613539666330390a313736323265656432366236633330313963326365653937323833366536
-  #           34623731376664623134383463316265643436343438623266623965636363326136
