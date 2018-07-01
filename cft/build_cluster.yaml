@@ -1,0 +1,44 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'Openshift Cluster'
+Parameters:
+  KeyName:
+    Type: AWS::EC2::KeyPair::KeyName
+    Default: 'dsmith-aws'
+  AmiId: 
+    Type: String
+    Default: 'ami-0ad99772'
+  InstanceType:
+    Type: String
+    Default: 'm5.large'
+Resources:
+  Master: 
+    Type: 'AWS::EC2::Instance'
+    Properties:
+      ImageId: !Ref 'AmiId'
+      KeyName: !Ref 'KeyName'
+      InstanceType: !Ref 'InstanceType'
+      Tags: 
+        - 
+          Key: Name
+          Value: 'openshift:master'
+  Infra: 
+    Type: 'AWS::EC2::Instance'
+    Properties:
+      ImageId: !Ref 'AmiId'
+      KeyName: !Ref 'KeyName'
+      InstanceType: !Ref 'InstanceType'
+      Tags: 
+        - 
+          Key: Name
+          Value: 'openshift:infra'
+  App: 
+    Type: 'AWS::EC2::Instance'
+    Properties:
+      ImageId: !Ref 'AmiId'
+      KeyName: !Ref 'KeyName'
+      InstanceType: !Ref 'InstanceType'
+      Tags: 
+        - 
+          Key: Name
+          Value: 'openshift:app'
+
